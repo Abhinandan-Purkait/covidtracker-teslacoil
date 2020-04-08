@@ -85,10 +85,10 @@ List of team member names and email IDs with their contributions
 
 #### Screensnaps of the main app
 
-![alt text](/home.png "Homepage")
+![alt text](/images/home.png "Homepage")
 
-![alt text](/stats.png "Statistics")
+![alt text](/images/stats.png "Statistics")
 
-![alt text](/mapstats.png "Map Statistics")
+![alt text](/images/mapstats.png "Map Statistics")
 
-![alt text](/predict.png "Prediction")
+![alt text](/images/predict.png "Prediction")

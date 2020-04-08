@@ -29,9 +29,10 @@ Covid19 a real issue, a massive pandemic, how can we increase public awareness a
 
 Following are some important technologies and libraries used. See a complete list in the [requirements file](Application Code/requirements.txt).
 
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 | Technology     | Version    |
 | -------------- | ---------- |
-| python         | 3.6.5      |
 | Django         | 3.0.4      |
 | nltk           | 3.4.5      |
 | numpy          | 1.17.4     |

@@ -5,14 +5,9 @@
           box-sizing: border-box;
 }
 
-#logo {
-  width: 170px;
-  height: 130px;
-}
-
 #logo1 {
   width: 170px;
-  height: 85px;
+  height: 110px;
 }
 
 nav {

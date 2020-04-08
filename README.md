@@ -2,7 +2,7 @@
 
 ##### Click on the logo to see the hosted app
 
-<a href = "https://covidtracker-teslacoil.herokuapp.com/" ><img width="200" height="150" alt="portfolio_view" src="/images/logo.png"></a>
+<a href = "https://covidtracker-teslacoil.herokuapp.com/" ><img width="170" height="110" alt="portfolio_view" src="/images/logo.png"></a>
 
 ### Project Overview
 

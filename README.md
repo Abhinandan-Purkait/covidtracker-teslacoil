@@ -1,6 +1,6 @@
 # CovidTracker - Teslacoil
 
-[![Hosted](/images/logo.png)](https://covidtracker-teslacoil.herokuapp.com/)
+[![Hosted](/images/logo.png =250x250)](https://covidtracker-teslacoil.herokuapp.com/)
 
 ### Project Overview
 

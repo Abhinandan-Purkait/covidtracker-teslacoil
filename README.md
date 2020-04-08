@@ -69,7 +69,7 @@ Following are some important technologies and libraries used. See a complete lis
    - make sure that the requirements.txt file is in the present working directory
    - `pip install -r requirements.txt`
 
-2. change directory to **hack2hire**
+2. change directory to **covid19**
 
    - `python manage.py migrate`
    - `python manage.py collectstatic` if prompted please type `yes` and press enter.

@@ -10,4 +10,5 @@ urlpatterns = [
     path('symptoms/', views.symptoms, name='symptoms'),
     path('maps-stats/', views.map_stats, name='map-stats'),
     path('prediction/', views.prediction, name='prediction'),
+    path('webhook/', views.webhook, name='webhook'),
 ]

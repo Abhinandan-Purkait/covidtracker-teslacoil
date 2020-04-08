@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
     <!-- CSS ends here -->
     <style>
-       
+
     </style>
 </head>
 
@@ -35,7 +35,7 @@
 
         <div class="nav">
             <a href="{% url 'index' %}">
-                <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+                <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
             </a>
 
             <ul class="nav-links">
@@ -104,6 +104,11 @@
         </div>
     </footer>
     <!-- Footer ends here -->
+
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger chat-icon="{% static '/images/email.png' %}" intent="WELCOME" chat-title="CovidTracker-Teslacoil"
+        agent-id="330577d7-c77d-4d7c-a14c-fe0dc76327b1" language-code="en">
+    </df-messenger>
 
     <script src="{% static 'js/nav.js' %}"></script>
 </body>

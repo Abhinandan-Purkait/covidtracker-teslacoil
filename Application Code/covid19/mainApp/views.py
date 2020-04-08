@@ -15,6 +15,9 @@ from plotly.offline import plot
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # statistics start
 plots = []
@@ -244,3 +247,17 @@ def map_stats(request):
 
 def prediction(request):
     return render(request, 'prediction.html')
+
+
+@csrf_exempt
+def webhook(request):
+    # build a request object
+    req = json.loads(request.body)
+    # get action from json
+    action = req.get('queryResult').get('queryText')
+    print(action)
+    # return a fulfillment message
+    fulfillmentText = {
+        'fulfillmentText': 'This is Django test response from webhook.'}
+    # return response
+    return JsonResponse(fulfillmentText, safe=False)

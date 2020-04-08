@@ -33,7 +33,7 @@
             <div class="nav">
                 <a href="{% url 'index' %}">
                     <!-- <h1><i class="fas fa-user-md"></i> CovidTracker</h1> -->
-                    <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+                    <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
                 </a>
 
                 <ul class="nav-links" id="myDiv">
@@ -52,7 +52,7 @@
             <h2 class="text-center">Frequently Asked Questions (FAQ)</h2>
         </div>
 
-        <div class="container mt-5 p-2">
+        <div class="container mt-5 p-2 col-md-8 mx-auto">
             <div class="sec card">
                 <div class="question">
                     <p><span class="Q">Q.</span>
@@ -156,7 +156,6 @@
             </div>
 
         </div>
-
         <!-- footer Starts here -->
         <footer class="footer mt-5">
             <div class="info-foot">
@@ -175,6 +174,11 @@
             </div>
         </footer>
         <!-- Footer ends here -->
+
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger chat-icon="{% static '/images/email.png' %}" intent="WELCOME" chat-title="CovidTracker-Teslacoil"
+            agent-id="330577d7-c77d-4d7c-a14c-fe0dc76327b1" language-code="en">
+        </df-messenger>
 
         <script src="{% static 'js/nav.js' %}"></script>
         <script src="{% static 'js/faq.js' %}"></script>

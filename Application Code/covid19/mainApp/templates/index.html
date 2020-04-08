@@ -159,10 +159,15 @@
             <!-- <a href="#top" id="topBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a> -->
             <!-- Scroll ends here -->
 
+            <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+            <df-messenger chat-icon="{% static '/images/email.png' %}" intent="WELCOME"
+                chat-title="CovidTracker-Teslacoil" agent-id="330577d7-c77d-4d7c-a14c-fe0dc76327b1" language-code="en">
+            </df-messenger>
+
     </div>
     <!-- Footer ends here -->
     <script src="{% static 'js/nav.js' %}"></script>
-    <script src="{% static 'js/topPage.js' %}"></script>
+    <!-- <script src="{% static 'js/topPage.js' %}"></script> -->
     <script src="{% static 'js/loader.js' %}"></script>
 </body>
 

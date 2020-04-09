@@ -59,7 +59,7 @@ Following are some important technologies and libraries used. See a complete lis
    - activate the env `/env/Scripts/activate`
    - `pip install -r requirements.txt`
 
-2. change directory to **hack2hire**
+2. change directory to **covid19**
 
    - `python manage.py migrate`
    - `python manage.py collectstatic` if prompted please type `yes` and press enter.

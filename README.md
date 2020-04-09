@@ -70,7 +70,7 @@ Following are some important technologies and libraries used. See a complete lis
    - make sure that the requirements.txt file is in the present working directory
    - `pip install -r requirements.txt`
 
-2. change directory to **hack2hire**
+2. change directory to **covid19**
 
    - `python manage.py migrate`
    - `python manage.py collectstatic` if prompted please type `yes` and press enter.
@@ -87,7 +87,7 @@ List of team member names and email IDs with their contributions
 
 | Name                       | E-mail                       | Contributions                                                           |
 | -------------------------- | ---------------------------- | ----------------------------------------------------------------------- |
-| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website                                        |
+| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website, chatbot integration                                        |
 | Abhinandan Purkait         | purkaitabhinandan@gmail.com  | Complete backend,integration of all modules in django, chatbot, hosting |
 | Sayantan Ghosh             | gsayantan1999@gmail.com      | Cleaning of gathered user data, implementation of all graphs and models |
 | Soujanna Dutta             | soujanna2015newera@gmail.com | Implementation of the graphs and models                                 |

@@ -6,7 +6,7 @@
 
 ##### Video of the complete app, click to view
 
-<a href = "https://drive.google.com/file/d/1GH1xctP2Iq04VtAN7dJz2v9XQOyNxnd8/view?usp=sharing" >https://drive.google.com/file/d/1GH1xctP2Iq04VtAN7dJz2v9XQOyNxnd8/view?usp=sharing</a>
+<a href = "https://drive.google.com/file/d/1XrEIHd_xgEL8drOYr5jBfPP322HTJPom/view?usp=sharing" >https://drive.google.com/file/d/1XrEIHd_xgEL8drOYr5jBfPP322HTJPom/view?usp=sharing</a>
 
 ### Project Overview
 
@@ -26,6 +26,7 @@ Covid19 a real issue, a massive pandemic, how can we increase public awareness a
 - We even have included a few preventive measures to explain the audience what can be done to avoid this.
 - There is also a dedicated application which can track and predict the chances of a person being infected in term of probability.
 - We have made sure that users have complete satisfaction using this website and have the complete knowledge and awareness needed.
+- We have a dedicated chatbot in our website which can check whether you are infected or not **Do Check This Out !**.
 
 ### Solution Description
 

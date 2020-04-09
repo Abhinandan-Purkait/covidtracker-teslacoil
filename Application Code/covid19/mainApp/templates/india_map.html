@@ -151,10 +151,26 @@
     </footer>
     <!-- Footer Ends here -->
 
-    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger chat-icon="{% static '/images/email.png' %}" intent="WELCOME" chat-title="CovidTracker-Teslacoil"
-        agent-id="330577d7-c77d-4d7c-a14c-fe0dc76327b1" language-code="en">
-    </df-messenger>
+    <script>
+        (function () {
+            var js,
+                fs,
+                d = document,
+                id = "tars-widget-script",
+                b = "https://tars-file-upload.s3.amazonaws.com/bulb/";
+            if (!d.getElementById(id)) {
+                js = d.createElement("script");
+                js.id = id;
+                js.type = "text/javascript";
+                js.src = b + "js/widget.js";
+                fs = d.getElementsByTagName("script")[0];
+                fs.parentNode.insertBefore(js, fs);
+            }
+        })();
+        window.tarsSettings = {
+            convid: "NywAZT",
+        };
+    </script>
 
     <script src="{% static 'js/nav.js' %}"></script>
 </body>

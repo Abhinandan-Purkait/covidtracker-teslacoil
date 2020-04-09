@@ -26,7 +26,7 @@ Covid19 a real issue, a massive pandemic, how can we increase public awareness a
 - We even have included a few preventive measures to explain the audience what can be done to avoid this.
 - There is also a dedicated application which can track and predict the chances of a person being infected in term of probability.
 - We have made sure that users have complete satisfaction using this website and have the complete knowledge and awareness needed.
-- We have a dedicated chatbot in our website which can check whether you are infected or not **Do Check This Out !**.
+- We have a dedicated chatbot in our website which can check whether you are infected or not **Do Check This Out !**
 
 ### Solution Description
 
@@ -87,7 +87,7 @@ List of team member names and email IDs with their contributions
 
 | Name                       | E-mail                       | Contributions                                                           |
 | -------------------------- | ---------------------------- | ----------------------------------------------------------------------- |
-| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website, chatbot integration                                        |
+| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website and all designs                        |
 | Abhinandan Purkait         | purkaitabhinandan@gmail.com  | Complete backend,integration of all modules in django, chatbot, hosting |
 | Sayantan Ghosh             | gsayantan1999@gmail.com      | Cleaning of gathered user data, implementation of all graphs and models |
 | Soujanna Dutta             | soujanna2015newera@gmail.com | Implementation of the graphs and models                                 |

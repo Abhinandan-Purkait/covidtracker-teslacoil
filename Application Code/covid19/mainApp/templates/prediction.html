@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CovidTracker - Prediction</title>
+    <link rel="icon" href="{% static '/images/WHITEDRONE.png' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,7 +17,6 @@
     <!-- All CSS files -->
     <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
-    <link rel="stylesheet" href="{% static 'css/prevention/prevention.css' %}">
     <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
     <!-- CSS ends here -->
     <style>
@@ -26,36 +26,62 @@
 
 <body>
     <!-- Navbar starts here -->
-    <nav>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
+    <nav class="navbar navbar-expand-md navbar-dark navbar-custom">
+        <!-- Brand -->
+        <a class="navbar-brand" href="{% url 'index' %}" style="display: flex;">
+            <img src="{% static '/images/coronavirus(1).png' %}" alt="" id="logo1" class="rotate">
+            <h4>CovidTracker<div class="small">Teslacoil</div>
+            </h4>
+        </a>
 
-        <div class="nav">
-            <a href="{% url 'index' %}">
-                <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
-            </a>
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <ul class="nav-links">
-                <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
-                <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
-                <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
-                <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
-                <li class="nav-item active-link"><a href="{% url 'prediction' %}">Prediction</a></li>
-                <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'statistics' %}">Statistics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'symptoms' %}">Symptoms</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'prevention' %}">Prevention</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'prediction' %}">Prediction</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'map-stats' %}">Map Stats</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mkit' %}">Virtual Medical Kit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'indiaAnalysis' %}">Indian Analysis</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'faq' %}">FAQ</a>
+                </li>
             </ul>
         </div>
     </nav>
     <!-- Navbar ends here -->
 
 
-    <h3 class="lead text-center mt-5 p-2">Future Analysis and Impact of covid 19 over the next 100 days</h3>
-    <p class="lead text-center p-2">Below here we provide the statistics. Hover over the map to check the predictions
-        over
-        a specific date.
-    </p>
+    <div class="jumbotron">
+        <h3 class="text-center mt-2">
+            <img src="{% static '/images/robot.png' %}" alt="" style="width: 50px; height: 50px;">&nbsp;Future Analysis and
+            Impact of covid 19 over the next 100 days</h3>
+        <p class="lead text-center">Below here we provide the statistics. Hover over the map to check the
+            predictions
+            over
+            a specific date.
+        </p>
+    </div>
 
     <div class="container mt-5">
         <p class="mt-3"><b>1. Below figure shows us the predicted deaths due to COVID-19 over the next 100 days.</b>
@@ -90,13 +116,16 @@
     <footer class="footer mt-5">
         <div class="info-foot">
             <div class="name">
-                <h3>CovidTracker</h3>
+                <img src="{% static '/images/coronavirus(1).png' %}" alt="" id="logo1" class="rotate">
+                <h3>&nbsp;CovidTracker<div class="small">Teslacoil</div>
+                </h3>
             </div>
             <div class="line-foot"></div>
             <div class="links-foot">
                 <a href="{% url 'symptoms' %}">Symptoms</a>
                 <a href="{% url 'prevention' %}">Preventive Measures</a>
                 <a href="{% url 'faq' %}">FAQ</a>
+                <a href="{% url 'about-us' %}">Know our team</a>
             </div>
         </div>
         <div class="name-foot">
@@ -104,6 +133,12 @@
         </div>
     </footer>
     <!-- Footer ends here -->
+
+    <!-- Our team button starts-->
+    <div class="our-team-btn">
+        <a href="{% url 'about-us' %}" title="Know our team" class="team-btn"><i class="fas fa-users"></i></a>
+    </div>
+    <!-- Our team button ends -->
 
     <script>
         (function () {

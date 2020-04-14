@@ -10,5 +10,7 @@ urlpatterns = [
     path('symptoms/', views.symptoms, name='symptoms'),
     path('maps-stats/', views.map_stats, name='map-stats'),
     path('prediction/', views.prediction, name='prediction'),
-    path('webhook/', views.webhook, name='webhook'),
+    path('about-us/', views.about, name='about-us'),
+    path('virtualMedicalKit/', views.vitualMedicalKit, name='mkit'),
+    path('indiaAnalysis/', views.indiaAnalysis, name='indiaAnalysis'),
 ]

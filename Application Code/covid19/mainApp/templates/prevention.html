@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>CovidTracker - Preventive Measures</title>
+    <link rel="icon" href="{% static '/images/WHITEDRONE.png' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,72 +24,67 @@
 
 <body>
     <!-- Navbar starts here -->
-    <nav>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-
-        <div class="nav">
-            <a href="{% url 'index' %}">
-                <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
-            </a>
-
-            <ul class="nav-links">
-                <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
-                <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
-                <li class="nav-item active-link"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
-                <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
-                <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
-                <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
-            </ul>
-        </div>
-    </nav>
+    {% include "navbar.html" %}
     <!-- Navbar ends here -->
-    <!-- Preventive Measures starts here -->
-    <div class="prevention">
-        <h2>Prevention is better than cure.</h2>
-        <div class="measures">
-            <div class="m1">
-                <p>1. Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub. </p>
-                <img src="{% static '/images/handwash.png' %}" alt="" id="m1-img">
+
+    <div class="container mt-5">
+        <h3>Prevention is better than cure.</h3>
+        <div class="prevention-cont">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/handwash.png' %}" alt="" id="m1-img">
+                    <p>1. Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub. </p>
+                </div>
             </div>
-            <div class="m2">
-                <p>2. Maintain at least 1 metre distance between you and people coughing or sneezing. </p>
-                <img src="{% static '/images/distance.png' %}" alt="" id="m1-img">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/distance.png' %}" alt="" id="m1-img">
+                    <p>2. Maintain at least 1 metre distance between you and people coughing or sneezing. </p>
+                </div>
             </div>
-            <div class="m3">
-                <p>3. Avoid touching your face. </p>
-                <img src="{% static '/images/facetouch.png' %}" alt="" id="m1-img">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/facetouch.png' %}" alt="" id="m1-img">
+                    <p>3. Avoid touching your face. </p>
+                </div>
             </div>
-            <div class="m4">
-                <p>4. Cover your mouth and nose when coughing or sneezing. </p>
-                <img src="{% static '/images/cough.png' %}" alt="" id="m1-img">
+        </div>
+        <div class="prevention-cont">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/cough.png' %}" alt="" id="m1-img">
+                    <p>4. Cover your mouth and nose when coughing or sneezing. </p>
+                </div>
             </div>
-            <div class="m5">
-                <p>5. Stay home if you feel unwell.</p>
-                <img src="{% static '/images/stay-home.png' %}" alt="" id="m1-img">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/stay-home.png' %}" alt="" id="m1-img">
+                    <p>5. Stay home if you feel unwell.</p>
+                </div>
             </div>
-            <div class="m6">
-                <p>6. Refrain from smoking and other activities that weaken the lungs. </p>
-                <img src="{% static '/images/smoke.png' %}" alt="" id="m1-img">
+            <div class="card text-center">
+                <div class="card-body">
+                    <img src="{% static '/images/smoke.png' %}" alt="" id="m1-img">
+                    <p>6. Refrain from smoking and other activities that weaken the lungs. </p>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Preventive Measures ends here -->
 
     <!-- footer Starts here -->
     <footer class="footer mt-5">
         <div class="info-foot">
             <div class="name">
-                <h3>CovidTracker</h3>
+                <img src="{% static '/images/coronavirus(1).png' %}" alt="" id="logo1" class="rotate">
+                <h3>&nbsp;CovidTracker<div class="small">Teslacoil</div>
+                </h3>
             </div>
             <div class="line-foot"></div>
             <div class="links-foot">
                 <a href="{% url 'symptoms' %}">Symptoms</a>
                 <a href="{% url 'prevention' %}">Preventive Measures</a>
                 <a href="{% url 'faq' %}">FAQ</a>
+                <a href="{% url 'about-us' %}">Know our team</a>
             </div>
         </div>
         <div class="name-foot">
@@ -96,6 +92,12 @@
         </div>
     </footer>
     <!-- Footer ends here -->
+
+    <!-- Our team button starts-->
+    <div class="our-team-btn">
+        <a href="{% url 'about-us' %}" title="Know our team" class="team-btn"><i class="fas fa-users"></i></a>
+    </div>
+    <!-- Our team button ends -->
 
     <script>
         (function () {

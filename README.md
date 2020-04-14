@@ -2,7 +2,7 @@
 
 ##### Hosted website, click to view
 
-<a href = "https://covidtracker-teslacoil.herokuapp.com/" >https://covidtracker-teslacoil.herokuapp.com/</a>
+<a href = "http://tintybot.pythonanywhere.com/" >http://tintybot.pythonanywhere.com/</a>
 
 ##### Video of the complete app, click to view
 
@@ -85,18 +85,19 @@ Following are some important technologies and libraries used. See a complete lis
 
 List of team member names and email IDs with their contributions
 
-| Name                       | E-mail                       | Contributions                                                           |
-| -------------------------- | ---------------------------- | ----------------------------------------------------------------------- |
-| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website and all designs                        |
-| Abhinandan Purkait         | purkaitabhinandan@gmail.com  | Complete backend,integration of all modules in django, chatbot, hosting |
-| Sayantan Ghosh             | gsayantan1999@gmail.com      | Cleaning of gathered user data, implementation of all graphs and models |
+| Name                       | E-mail                      | Contributions                                                           |
+| -------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com | Complete frontend of the website and all designs                        |
+| Abhinandan Purkait         | purkaitabhinandan@gmail.com | Complete backend,integration of all modules in django, chatbot, hosting |
+| Sayantan Ghosh             | gsayantan1999@gmail.com     | Cleaning of gathered user data, implementation of all graphs and models |
+| Rohit Halder               | rhalder9@gmail.com          | Built the model for virtual medical kit                                 |
 
 #### Screensnaps of the main app
 
 ![alt text](/images/home.png "Homepage")
 
-![alt text](/images/stats.png "Statistics")
+![alt text](/images/stats.png "Map Statistics")
 
-![alt text](/images/mapstats.png "Map Statistics")
+![alt text](/images/mapstats.png "Virtual Medical Kit")
 
 ![alt text](/images/predict.png "Prediction")

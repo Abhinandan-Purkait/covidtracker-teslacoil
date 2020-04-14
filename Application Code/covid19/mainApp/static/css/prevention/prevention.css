@@ -1,72 +1,67 @@
+body {
+  background: #ecf0f1;
+}
+
 .prevention {
   padding: 90px;
 }
 
-.measures {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
 #m1-img {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 }
 
-.m1, .m3, .m5 {
+.card {
+  width: 400px;
+  height: 300px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  /* Animation */
+}
+
+.card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.card .card-body p {
+  margin: 5px;
+}
+
+.prevention-cont {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 16px;
+  margin: 20px;
 }
 
-.m2, .m4, .m6 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
-      -ms-flex-direction: row-reverse;
-          flex-direction: row-reverse;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 16px;
+.prevention-cont div {
+  margin: 20px;
 }
 
 @media screen and (max-width: 768px) {
-  .prevention {
-    padding: 60px;
-  }
-  .prevention h2 {
-    font-size: 24px;
-  }
   #m1-img {
-    height: 90px;
-    width: 90px;
+    height: 100px;
+    width: 100px;
   }
-  .m1, .m2, .m3, .m4, .m5, .m6 {
-    font-size: 14px;
+  .card {
+    width: 300px;
   }
-  .m1 p, .m2 p, .m3 p, .m4 p, .m5 p, .m6 p {
-    margin: 5px;
+  .prevention-cont {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 /*# sourceMappingURL=prevention.css.map */

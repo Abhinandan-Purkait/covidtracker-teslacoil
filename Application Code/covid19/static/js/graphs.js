@@ -12,12 +12,12 @@ function graphChoose() {
   });
 
   // Show the loader
-  gif.classList.remove("hide1");
+ gif.classList.remove("hide1");
 
   // After 1.5 seconds display the graph
   setTimeout(() => {
     // hide the gif
-    gif.classList.add("hide1");
+   gif.classList.add("hide1");
 
     // display the appropiate graph
     allGraphs.forEach((g) => {

@@ -36,8 +36,18 @@
 .sym-cont .card {
   width: 300px;
   height: 300px;
-  -webkit-box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
+  /* Animation */
+}
+
+.sym-cont .card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 @media screen and (max-width: 768px) {

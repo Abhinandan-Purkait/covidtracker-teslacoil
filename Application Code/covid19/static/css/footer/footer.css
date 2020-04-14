@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 .footer {
   height: 30vh;
   display: -webkit-box;
@@ -7,6 +8,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: relative;
 }
 
 .info-foot {
@@ -27,6 +29,23 @@
 
 .name {
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.name h3 {
+  font-family: 'Lobster', cursive;
+  color: #e67e22;
+}
+
+.name h3 .small {
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 .line-foot {
@@ -58,6 +77,14 @@
   background: #273C75;
   text-align: center;
   color: #fff;
+}
+
+#cor {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: -30px;
+  left: 50px;
 }
 
 @media screen and (max-width: 768px) {

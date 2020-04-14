@@ -1,16 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .footer {
     height: 30vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
+
 .info-foot {
-    // background: #0F2027;
-    // /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    // /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
-    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: #192A56;
     display: flex;
     justify-content: space-evenly;
@@ -22,6 +20,19 @@
 
 .name {
     color: #fff;
+    display: flex;
+    align-items: center;
+
+    h3 {
+        font-family: 'Lobster', cursive;
+        color: #e67e22;
+
+        .small {
+            font-size: 12px;
+            font-family: sans-serif;
+            letter-spacing: 0.1rem;
+        }
+    }
 }
 
 .line-foot {
@@ -55,6 +66,14 @@
     color: #fff;
 }
 
+#cor {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -30px;
+    left: 50px;
+}
+
 @media screen and (max-width: 768px) {
     .info-foot {
         flex-direction: column;
@@ -65,7 +84,7 @@
     .line-foot {
         display: none;
     }
-    
+
 
     .name h3 {
         font-size: 30px;

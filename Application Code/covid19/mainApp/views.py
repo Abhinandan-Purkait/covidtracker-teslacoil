@@ -18,6 +18,32 @@ from bs4 import BeautifulSoup
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+import cv2
+import keras
+import warnings
+from .models import Images
+
+# MKIT STARTS
+def load_models():
+    model1=keras.models.load_model("models/first_level_hierarchy.h5")
+    model2=keras.models.load_model("models/second_level_hierarchy.h5")
+    return model1,model2
+
+def test_pneumonia(image,model1,model2):
+    logs=["Covid 19","Bacterial Pneumonia","Viral Pneumonia","Negative"]
+    result=dict()
+    image=(np.array([cv2.resize(image,(150,150))]).reshape(1,150,150,3)).astype('float32')/255
+    base=model1.predict(image)
+    indx=np.argmax(base)
+    if indx==1:
+        derived=model2.predict(image)
+        indx_der=np.argmax(derived)
+        result['Pneumonia']=[logs[indx_der],derived[0][indx_der]*100]
+    elif indx==0:
+        result['Pneumonia']=[logs[3],base[0][indx]*100]
+    return(result)
+
+# MKIT ENDS
 
 # statistics start
 plots = []
@@ -215,10 +241,6 @@ def coronaCount(url):
 
 
 def index(request):
-    # world = coronaCount('https://www.worldometers.info/coronavirus/')
-    # india = coronaCount('https://www.worldometers.info/coronavirus/country/india/')
-    # india[3] = india[0] - (india[1]+india[2])
-    # {'world_total': f"{world[0]:,d}", 'world_active': f"{world[1]:,d}", 'world_dead': f"{world[2]:,d}", 'world_recovered': f"{world[3]:,d}", 'india_total': f"{india[0]:,d}", 'india_active': f"{india[1]:,d}", 'india_dead': f"{india[2]:,d}", 'india_recovered': f"{india[3]:,d}"})
     return render(request, 'index.html')
 
 
@@ -248,16 +270,150 @@ def map_stats(request):
 def prediction(request):
     return render(request, 'prediction.html')
 
+def about(request):
+    return render(request, 'about.html')
 
-@csrf_exempt
-def webhook(request):
-    # build a request object
-    req = json.loads(request.body)
-    # get action from json
-    action = req.get('queryResult').get('queryText')
-    print(action)
-    # return a fulfillment message
-    fulfillmentText = {
-        'fulfillmentText': 'This is Django test response from webhook.'}
-    # return response
-    return JsonResponse(fulfillmentText, safe=False)
+
+
+def vitualMedicalKit(request):
+    if request.method == 'POST':
+        model1,model2=load_models()
+        typelis = []
+        problis = []
+        imgs = []
+        for count,x in enumerate(request.FILES.getlist('image')):
+            img = Images()
+            print(x, "**")
+            img.image = x
+            print(x, "**")
+            img.save()
+            print(x, "**")
+            imgs.append(str(x))
+        
+        for x in imgs:
+            imageFile=cv2.imread("media/images/"+x)
+            out = test_pneumonia(imageFile,model1,model2)
+            res = out['Pneumonia']
+            typelis.append(res[0])
+            problis.append(res[1])
+        
+        abc = Images.objects.all()
+        abc.delete()
+        mainlist = zip(imgs, typelis, problis)
+        return render(request, 'mkit.html',{'lis':mainlist,"Res":'result'})
+        return render(request, 'mkit.html')
+    else:
+        return render(request, 'mkit.html')
+
+def indiaAnalysis(request):
+    plotsInd = []
+    df_carona_in_india = pd.read_csv("datasets/Covid_19_India/covid_19_india.csv")
+
+    #Total cases of carona in India
+    df_carona_in_india['Total Cases'] = df_carona_in_india['Cured'] + df_carona_in_india['Deaths'] + df_carona_in_india['Confirmed']
+    #Active cases of carona in India
+    df_carona_in_india['Active Cases'] = df_carona_in_india['Total Cases'] - df_carona_in_india['Cured'] - df_carona_in_india['Deaths']
+    df_carona_in_india.head()
+    #Till 10th April Active Cases in India
+    df1= df_carona_in_india[df_carona_in_india['Date']=='10/04/20']
+    fig = px.bar(df1, x='State/UnionTerritory', y='Active Cases', color='Active Cases',barmode='group', height=600)
+    fig.update_layout(title='Till 10th April Active Cases in India')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    df_carona_in_india['Date'] =pd.to_datetime(df_carona_in_india.Date,dayfirst=True)
+    df_carona_in_india.head()
+    #Daily Cases in India Datewise
+    carona_data = df_carona_in_india.groupby(['Date'])['Total Cases'].sum().reset_index().sort_values('Total Cases',ascending = True)
+    carona_data['Daily Cases'] = carona_data['Total Cases'].sub(carona_data['Total Cases'].shift())
+    carona_data['Daily Cases'].iloc[0] = carona_data['Total Cases'].iloc[0]
+    carona_data['Daily Cases'] = carona_data['Daily Cases'].astype(int)
+    fig = px.bar(carona_data, y='Daily Cases', x='Date',hover_data =['Daily Cases'], color='Daily Cases', height=500)
+    fig.update_layout(title='Daily Cases in India Datewise')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    carona_data['Corona Growth Rate'] = carona_data['Total Cases'].pct_change().mul(100).round(2)
+    #Corona Growth Rate Comparison with Previous Day
+    fig = px.bar(carona_data, y='Corona Growth Rate', x='Date',hover_data =['Corona Growth Rate','Total Cases'], height=500)
+    fig.update_layout(title='Corona Growth Rate(in Percentage) Comparison with Previous Day')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    #Moratality Rate
+    carona_data = df_carona_in_india.groupby(['Date'])['Total Cases','Active Cases','Deaths'].sum().reset_index().sort_values('Date',ascending=False)
+    carona_data['Mortality Rate'] = ((carona_data['Deaths']/carona_data['Total Cases'])*100)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=carona_data['Date'], y=carona_data['Mortality Rate'],mode='lines+markers',name='Cases'))
+    fig.update_layout(title_text='COVID-19 Mortality Rate in INDIA',plot_bgcolor='rgb(225,230,255)')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    #Total Cases in India State Datewise
+    carona_data = df_carona_in_india.groupby(['Date','State/UnionTerritory','Total Cases'])['Cured','Deaths','Active Cases'].sum().reset_index().sort_values('Total Cases',ascending = False)
+    fig = px.bar(carona_data, y='Total Cases', x='Date',hover_data =['State/UnionTerritory','Active Cases','Deaths','Cured'], color='Total Cases',barmode='group', height=700)
+    fig.update_layout(title='Indian States with Current Total Corona Cases')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    #Pie chart visualization of states effected by caronavirus
+    df_Age = pd.read_csv("datasets/Covid_19_India/AgeGroupDetails.csv")
+    fig = px.pie(df_Age, values='TotalCases', names='AgeGroup')
+    fig.update_layout(title='Age Group affected with COVID-19')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    #Total Cases,Active Cases,Cured,Deaths from Corona Virus in India
+    carona_data = df_carona_in_india.groupby(['Date'])['Total Cases','Active Cases','Cured','Deaths'].sum().reset_index().sort_values('Date',ascending=True)
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=carona_data['Date'], y=carona_data['Total Cases'],
+                        mode='lines+markers',name='Total Cases'))
+    fig.add_trace(go.Scatter(x=carona_data['Date'], y=carona_data['Active Cases'], 
+                    mode='lines+markers',name='Active Cases'))
+    fig.add_trace(go.Scatter(x=carona_data['Date'], y=carona_data['Cured'], 
+                    mode='lines+markers',name='Cured'))
+    fig.add_trace(go.Scatter(x=carona_data['Date'], y=carona_data['Deaths'], 
+                    mode='lines+markers',name='Deaths'))
+    fig.update_layout(title_text='Curve Showing Different Cases from COVID-19 in India',plot_bgcolor='rgb(225,230,255)')
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    #ARIMA Model
+    import datetime
+    prediction_dates = []
+    start_date = carona_data['Date'][len(carona_data) - 1]
+    for i in range(100):
+        date = start_date + datetime.timedelta(days=1)
+        prediction_dates.append(date)
+        start_date = date
+    df = pd.DataFrame()
+    df['Dates'] = prediction_dates
+    #df['Halt_Prediction'] = fcast1
+    carona_data.head()
+    arima_data = carona_data.drop(['Total Cases','Cured','Deaths'],axis=1)
+
+    from statsmodels.tsa.arima_model import ARIMA
+    from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+    import statsmodels.api as sm
+    from keras.models import Sequential
+    from keras.layers import LSTM,Dense
+    from keras.layers import Dropout
+    from tensorflow.keras.preprocessing.sequence import TimeseriesGenerator
+
+    model = ARIMA(arima_data['Active Cases'].values, order=(1, 2, 1))
+    fit_model = model.fit(trend='c', full_output=True, disp=True)
+    fit_model.summary()
+    forcast = fit_model.forecast(steps=100)
+    pred_y = forcast[0].tolist()
+    pd.DataFrame(pred_y)
+    df = pd.DataFrame()
+    df['Dates'] = prediction_dates
+    df['ARIMA_Prediction'] = pred_y
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=df['Dates'], y=df['ARIMA_Prediction'],mode='lines+markers',name='Predicted Active Cases'))
+    fig.update_layout(title_text='Curve Showing Predicted Active Cases from COVID-19 in India using ARIMA Model',plot_bgcolor='rgb(225,230,255)')
+
+    plot_div = plot(fig, output_type='div', include_plotlyjs=False, show_link=False, link_text="", image_width=500, config={"displaylogo": False})
+    plotsInd.append(plot_div)
+
+    return render(request, 'indiaAnalysis.html', context={'plots': plotsInd})

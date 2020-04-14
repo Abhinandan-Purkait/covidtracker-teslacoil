@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CovidTracker - Virtual Medical Kit</title>
+    <link rel="icon" href="{% static '/images/WHITEDRONE.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/main/main.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/faq/faq.css' %}">
+    <!-- CSS ends here -->
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    {% include "navbar.html" %}
+    <!-- Navbar ends here -->
+
+    <div class="jumbotron text-center">
+        <h2><img src="{% static '/images/hospital.png' %}" alt="" style="width: 60px; height: 60px;"> Welcome to our
+            section of Virtual Medical Kit.</h2>
+        <p class="lead">Check your probabilty of having COVID-19 by just uploading an image.</p>
+        <p>You must upload X-Ray image of your chest and can see the result instantly.</p>
+    </div>
+
+    <div class="container">
+        <center>
+            <form method="POST" action="{% url 'mkit' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image" multiple>
+                    <button type="submit" class="custom-btn"><i class="fas fa-upload"></i> Upload the
+                        image.</button>
+                </div>
+            </form>
+            <br><br>
+            {% if Res %}
+            <div class="jumbotron">
+                <h2 class="text-center" style="color: green;"><img src="{% static '/images/result.png' %}" alt=""
+                        style="width: 60px; height: 60px;">Check your result(s)</h2><br>
+                <table class="table table-sm table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">File</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Probaility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for x,y,z in lis %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{x}}</td>
+                            <td>{{y}}</td>
+                            <td>{{z}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </center>
+    </div>
+
+    </div>
+
+
+    <!-- footer Starts here -->
+    <footer class="footer mt-5">
+        <div class="info-foot">
+            <div class="name">
+                <img src="{% static '/images/coronavirus(1).png' %}" alt="" id="logo1" class="rotate">
+                <h3>&nbsp;CovidTracker<div class="small">Teslacoil</div>
+                </h3>
+            </div>
+            <div class="line-foot"></div>
+            <div class="links-foot">
+                <a href="{% url 'symptoms' %}">Symptoms</a>
+                <a href="{% url 'prevention' %}">Preventive Measures</a>
+                <a href="{% url 'faq' %}">FAQ</a>
+                <a href="{% url 'about-us' %}">Know our team</a>
+            </div>
+        </div>
+        <div class="name-foot">
+            <p>covidtracker.com 2020 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer ends here -->
+
+    <!-- Our team button starts-->
+    <div class="our-team-btn">
+        <a href="{% url 'about-us' %}" title="Know our team" class="team-btn"><i class="fas fa-users"></i></a>
+    </div>
+    <!-- Our team button ends -->
+
+    <script>
+        (function () {
+            var js,
+                fs,
+                d = document,
+                id = "tars-widget-script",
+                b = "https://tars-file-upload.s3.amazonaws.com/bulb/";
+            if (!d.getElementById(id)) {
+                js = d.createElement("script");
+                js.id = id;
+                js.type = "text/javascript";
+                js.src = b + "js/widget.js";
+                fs = d.getElementsByTagName("script")[0];
+                fs.parentNode.insertBefore(js, fs);
+            }
+        })();
+        window.tarsSettings = {
+            convid: "NywAZT",
+        };
+    </script>
+
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/faq.js' %}"></script>
+</body>
+
+</html>

@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <title>CovidTracker - Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static '/images/WHITEDRONE.png' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,6 +16,8 @@
     <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
     <link rel="stylesheet" href="{% static 'css/hero/hero.css' %}">
     <link rel="stylesheet" href="{% static 'css/hero_stats/hero_stats.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dropdown/dropdown.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cards/cards.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
     <!-- CSS ends here -->
@@ -26,30 +29,11 @@
     <div class="loader"></div>
     <!-- Loader ends here -->
 
-    <!-- Navbar starts here -->
+
     <div class="post-loader hide">
-        <nav id="top">
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
 
-            <div class="nav navbar-fixed">
-                <a href="{% url 'index' %}">
-                    <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
-                </a>
-
-                <ul class="nav-links" id="myDiv">
-                    <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
-                    <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
-                    <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
-                    <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
-                    <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
-                    <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
-                </ul>
-            </div>
-        </nav>
+        <!-- Navbar starts here -->
+        {% include "navbar.html" %}
         <!-- Navbar ends here -->
 
         <!-- Hero Section starts here -->
@@ -82,82 +66,150 @@
             <!-- Hero World Stats Section Starts here -->
             <h3 id="hero-stats" class='text-center mt-5'> <img src="{% static '/images/world.png' %}" id="world"
                     class="text-center"> &nbsp;
-                World
-                Statistics</h3>
+                Covid-19 Real Time Stats</h3>
+            <p class="text-center lead">Last updated - <span class="small" id="last-update"></span></p>
+            <div class="container mx-auto text-center mt-5">
+                <div class="box">
+                    <select id="country-picker" onchange="countryChoose()">
+                        <option value="global" selected>Global</option>
+                    </select>
+                </div>
+            </div>
             <section class="hero-stats">
                 <div class="top-hero">
                     <div class="confirmed card p-5">
-                        <h3>Confirmed</h3>
-                        <p>1,225,728</p>
+                        <h3><img src="{% static '/images/confirm.png' %}" alt="" id="world">&nbsp;Confirmed</h3>
+                        <p id="confirm-info">1,225,728</p>
                     </div>
-                    <div class="active card p-5">
-                        <h3>Active</h3>
-                        <p>905,344</p>
-                    </div>
-                </div>
-                <div class='low-hero'>
                     <div class="recovered card p-5">
-                        <h3>Recovered</h3>
-                        <p>253,864</p>
+                        <h3><img src="{% static '/images/recover.png' %}" alt="" id="world">&nbsp;Recovered</h3>
+                        <p id="recover-info">905,344</p>
                     </div>
                     <div class="deaths card p-5">
-                        <h3>Deaths</h3>
-                        <p>66,520</p>
+                        <h3><img src="{% static '/images/death.png' %}" alt="" id="world">&nbsp;Deaths</h3>
+                        <p id="death-info">905,344</p>
                     </div>
                 </div>
             </section>
             <!-- Hero World Stats Section Ends here -->
 
-            <!-- Hero India Stats Section starts here -->
-            <h3 class='text-center mt-5'> <img src="{% static '/images/india.png' %}" id="india" class="text-center">
-                &nbsp;
-                Indian
-                Statistics</h3>
-            <section class="hero-stats">
-                <div class="top-hero">
-                    <div class="confirmed card p-5">
-                        <h3>Confirmed</h3>
-                        <p>3,588</p>
+            <!-- Info-cards starts here -->
+            <h3 class="text-center mt-5"><img src="{% static '/images/tips.png' %}" alt="" id="world">&nbsp;Some tips
+                and
+                info about COVID-19</h3>
+
+            <div class="container mt-3 mx-auto text-center all-cards p-2">
+                <div class="container-top">
+                    <div class="main-container">
+                        <div class="the-card">
+                            <div class="front">
+                                <img src="{% static '/images/vox1.jpg' %}" alt="" id="vox">
+                            </div>
+                            <div class="back">
+                                <p>1. SARS-CoV-2 is very contagious, and a huge portion of the global population is
+                                    vulnerable.</p>
+                                <p>2. The virus is believed to be spread mainly by respiratory droplets. </p>
+                                <p>3. There’s a huge range of severity of illness</p>
+                                <p>4. Lockdowns and shelter-in-place orders are not an overreaction</p>
+                                <p>5. The situation for hospitals and health care workers is dire</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="active card p-5">
-                        <h3>Active</h3>
-                        <p>3230</p>
+                    <div class="main-container">
+                        <div class="the-card">
+                            <div class="front">
+                                <img src="{% static '/images/vox2.jpg' %}" alt="" id="vox">
+                            </div>
+                            <div class="back">
+                                <p>1. Stay home</p>
+                                <p>2. Separate from other people and pets</p>
+                                <p>3. Keep the fluids from coughs and sneezes out of the air or off surfaces</p>
+                                <p>4. Wash hands with soap nand water</p>
+                                <p>5. Clean and wash “high-touch” items in the house</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-container">
+                        <div class="the-card">
+                            <div class="front">
+                                <img src="{% static '/images/vox3.jpg' %}" alt="" id="vox">
+                            </div>
+                            <div class="back">
+                                <p>1. Get your own facts straight </p>
+                                <p>2. Speak in terms of actions, not just facts</p>
+                                <p>3. If “please don’t!” is getting you nowhere, tell them what you’re personally doing
+                                    and why </p>
+                                <p>4. Do what you can to help people surmount tech and other barriers</p>
+                                <p>5. Hold the line with the one person you can control (you)</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class='low-hero'>
-                    <div class="recovered card p-5">
-                        <h3>Recovered</h3>
-                        <p>229</p>
+                <div class="container-down">
+                    <div class="main-container">
+                        <div class="the-card">
+                            <div class="front">
+                                <img src="{% static '/images/vox4.jpg' %}" alt="" id="vox">
+                            </div>
+                            <div class="back">
+                                <p>1. Know that it’s okay to have anxiety. You’re not alone.</p>
+                                <p>2. As scary as it may seem, facing your fears will provide a sense of relief</p>
+                                <p>3. Be easy on yourself. Some days will be worse than others.</p>
+                                <p>4. Learn and practice ways to calm and center yourself</p>
+                                <p>5. If you’re having trouble quieting your mind on your own, there are a ton of great
+                                    ADAA-reviewed mental health resources that can help.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="deaths card p-5">
-                        <h3>Deaths</h3>
-                        <p>99</p>
+                    <div class="main-container">
+                        <div class="the-card">
+                            <div class="front">
+                                <img src="{% static '/images/vox5.jpg' %}" alt="" id="vox">
+                            </div>
+                            <div class="back" style="text-align: left;">
+                                <p>Preventing infections is the best way to protect everyone, regardless of age.
+                                    Hand-washing, for instance, remains an important tactic for young and old alike to
+                                    control the spread of the coronavirus. <br><br>
+
+                                    Zeichner also emphasized keeping kids current with their vaccinations and making
+                                    sure they get regular flu shots. While the influenza vaccine can’t prevent Covid-19,
+                                    it can prevent influenza, which in turn reduces the stress on the health care
+                                    system, and on families.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
-            <!-- Hero India Stats section ends here -->
+            </div>
+            <!-- Info-card ends here -->
 
             <!-- footer Starts here -->
             <footer class="footer mt-5">
                 <div class="info-foot">
                     <div class="name">
-                        <h3>CovidTracker</h3>
+                        <img src="{% static '/images/coronavirus(1).png' %}" alt="" id="logo1" class="rotate">
+                        <h3>&nbsp;CovidTracker<div class="small">Teslacoil</div>
+                        </h3>
                     </div>
                     <div class="line-foot"></div>
                     <div class="links-foot">
                         <a href="{% url 'symptoms' %}">Symptoms</a>
                         <a href="{% url 'prevention' %}">Preventive Measures</a>
-                        <a href="{% url 'prevention' %}">FAQ</a>
+                        <a href="{% url 'faq' %}">FAQ</a>
+                        <a href="{% url 'about-us' %}">Know our team</a>
                     </div>
                 </div>
                 <div class="name-foot">
                     <p>tesacoil-covid19.herokuapp.com 2020 All Rights Reserved.</p>
                 </div>
             </footer>
+            <!-- Footer ends here -->
 
-            <!-- Scroll back to top button -->
-            <!-- <a href="#top" id="topBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a> -->
-            <!-- Scroll ends here -->
+            <!-- Our team button starts-->
+            <div class="our-team-btn">
+                <a href="{% url 'about-us' %}" title="Know our team" class="team-btn"><i class="fas fa-users"></i></a>
+            </div>
+            <!-- Our team button ends -->
 
             <script>
                 (function () {
@@ -181,10 +233,9 @@
             </script>
 
     </div>
-    <!-- Footer ends here -->
-    <script src="{% static 'js/nav.js' %}"></script>
-    <!-- <script src="{% static 'js/topPage.js' %}"></script> -->
+    <!-- <script src="{% static 'js/nav.js' %}"></script> -->
     <script src="{% static 'js/loader.js' %}"></script>
+    <script src="{% static 'js/getRealData.js' %}"></script>
 </body>
 
 </html>

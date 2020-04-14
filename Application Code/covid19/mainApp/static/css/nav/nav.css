@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -5,118 +6,126 @@
           box-sizing: border-box;
 }
 
-#logo1 {
-  width: 150px;
-  height: 60px;
-}
-
-nav {
+.navbar-custom {
   background: #192A56;
-  height: 12vh;
-  z-index: 100;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  color: #fff;
 }
 
-nav .nav-links {
+#logo1 {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar-brand {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  list-style: none;
-  width: 50%;
-  height: 0%;
-  margin-left: auto;
 }
 
-nav .nav-item a {
-  text-decoration: none;
+.navbar-brand h4 {
+  margin: 5px;
+  font-family: 'Lobster', cursive;
+  color: #e67e22;
+}
+
+.navbar-brand h4 .small {
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+.rotate {
+  -webkit-animation: rotation 5s infinite linear;
+          animation: rotation 5s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+
+.our-team-btn {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.our-team-btn a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.our-team-btn i {
+  font-size: 18px;
+}
+
+.our-team-btn .team-btn {
+  background: #111;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  -webkit-box-shadow: 0 18px 18px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 18px 18px 0 rgba(0, 0, 0, 0.2);
+}
+
+.our-team-btn .team-btn:hover {
+  background: #3498db;
+}
+
+input[type="file"] {
+  width: 40%;
+  background: #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.custom-btn {
   color: #fff;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+  background: #2980b9;
 }
 
-nav .nav-item a:hover {
-  color: #ddd;
-}
-
-nav .active-link {
-  border-bottom: 2px solid red;
-  font-weight: bold;
-}
-
-nav .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 20px;
-}
-
-nav .nav a {
-  text-decoration: none;
-}
-
-nav .nav h1 {
-  font-weight: 400;
-  color: #fff;
-  font-size: 30px;
+.custom-btn:hover {
+  background: #3498db;
 }
 
 @media screen and (max-width: 768px) {
   #logo1 {
-    width: 150px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
   }
-  nav {
+  input[type="file"] {
     width: 100%;
-    background: #192A56;
-  }
-  nav h1 {
-    padding: 20px;
-  }
-  nav .nav-links {
-    position: fixed;
-    background: #192A56;
-    width: 100%;
-    height: 100vh;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    clip-path: circle(10px at 90% -10%);
-    -webkit-clip-path: circle(10px at 90% -10%);
-    -webkit-transition: all 1s ease-out;
-    transition: all 1s ease-out;
-    pointer-events: none;
-  }
-  nav .nav-links.open {
-    clip-path: circle(1000px at 90% -10%);
-    -webkit-clip-path: circle(1000px at 90% -10%);
-    pointer-events: all;
-  }
-  nav .nav-links a {
-    font-size: 18px;
-  }
-  nav .line {
-    width: 30px;
-    height: 3px;
-    background: #fff;
-    margin: 5px;
-  }
-  nav .hamburger {
-    cursor: pointer;
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    -webkit-transform: translate(-5%, -50%);
-            transform: translate(-5%, -50%);
-    z-index: 2;
-  }
-  nav .nav {
-    padding: 0px;
   }
 }
 /*# sourceMappingURL=nav.css.map */

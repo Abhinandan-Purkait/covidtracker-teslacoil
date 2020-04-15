@@ -27,6 +27,7 @@ Covid19 a real issue, a massive pandemic, how can we increase public awareness a
 - There is also a dedicated application which can track and predict the chances of a person being infected in term of probability.
 - We have made sure that users have complete satisfaction using this website and have the complete knowledge and awareness needed.
 - We have a dedicated chatbot in our website which can check whether you are infected or not **Do Check This Out !**
+- We have a dedicated X-ray analyser in our website, all you need to do is to upload your chest x-ray and check whether you have got infection or not **Do Check This Out !**
 
 ### Solution Description
 
@@ -59,6 +60,8 @@ Following are some important technologies and libraries used. See a complete lis
 | requests       | 2.23.0     |
 | bs4            | 0.0.1      |
 | psycopg2       | 2.8.4      |
+| tensorflow     | 1.15.0     |
+| keras          | 2.8.4      |
 
 ##### Setup/Installations required to run the solution for testing
 

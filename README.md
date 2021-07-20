@@ -2,7 +2,7 @@
 
 ##### Hosted website, click to view
 
-<a href = "http://tintybot.pythonanywhere.com/" >http://tintybot.pythonanywhere.com/</a>
+<a href = "http://tintybot.pythonanywhere.com/" >http://tintybot.pythonanywhere.com/</a>v [Currently Down, due to hosting expensed.]
 
 ##### Video of the complete app, click to view
 
